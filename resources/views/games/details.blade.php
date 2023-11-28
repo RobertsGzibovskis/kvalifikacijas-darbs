@@ -6,6 +6,9 @@
     <h1>Game Details</h1>
 
     <div>
+
+
+        <p>Test</p>
         <p>Game ID: {{ $game->game_id }}</p>
         <p>Start Time: {{ $game->start_time }}</p>
         <p>Date: {{ $game->date }}</p>
