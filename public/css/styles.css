@@ -1,0 +1,658 @@
+body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #e6f4f1;
+}
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 48px;
+  color: black; /* Change to your preferred text color */
+  text-transform: uppercase;
+  padding: 20px; /* Add padding to create space around the text */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#user-profile-header{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    color: black; /* Change to your preferred text color */
+    text-transform: uppercase;
+    padding: 20px; /* Add padding to create space around the text */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2{
+    text-align: center;
+
+}
+/***************************NACIGATION BAR CSS*************************************/
+nav {
+    width: 100%;
+    overflow: auto;
+    background-color: #176B87; /* Background color */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    font-size: 18px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+
+/* Navbar (ul) */
+nav ul {
+    padding: 0;
+    margin: 0 0 0 80px;
+    list-style: none;
+}
+
+/* Navbar (li) */
+nav li {
+    float: left;
+    margin-right: 40px; /* Add some right margin for spacing between items */
+}
+
+li::marker {
+    content: none; /* Remove the marker (bullet or number) */
+}
+
+/* Tīmekļa vietnes logo*/
+.logo img {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+    max-height: 40px; /* Set a maximum height for the logo image */
+}
+
+
+/* Navbar linki */
+nav a {
+    display: block;
+    padding: 20px 15px;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    position: relative; /* Add this for positioning the ::before element */
+}
+
+nav a:hover {
+    background-color: #232D3F; /* Change background color on hover */
+    color: #FFFFFF; /* Change text color on hover */
+}
+
+/* Add a bit of spacing between the navigation links */
+nav a + a {
+    margin-left: 10px;
+}
+
+.login img
+{
+    position: absolute;
+    right: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    max-height: 40px;
+}
+
+.register {
+    position: absolute;
+    right: 70px;
+    margin-top: 15px;
+    margin-left: 10px;
+    max-height: 5px;
+
+}
+/****************************************TEAM CONTAINER CSS**********************************************/
+
+.team-background{
+    background-color: #fff6ff;
+    padding: 40px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.team-container {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    width: 60%;
+    margin: 0 auto; /* Center the element horizontally*/
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.team {
+    width: 20%; /* Set the width for each team to create a 2x5 grid */
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    width: 300px; /* Adjust the width as needed */
+    height: 200px; /* Adjust the height as needed */
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.team-logo {
+    max-width: 100%;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+    grid-gap: 2px; /* Adjust the gap between teams */
+}
+
+.team-name {
+    font-size: 1.5rem; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the text bold */
+    color: #333; /* Set the text color */
+    margin-top: 10px; /* Add spacing between the image and text */
+    text-transform: uppercase; /* Uppercase text */
+}
+/***********************************PLAYER CSS********************************/
+.player-background{
+    background-color: #fff6ff;
+    padding: 40px;
+    width: 60%;
+    margin: 0 auto; /* Center the element horizontally*/
+}
+
+.player-container{
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+}
+
+
+.player-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Two equal-width columns */
+    grid-gap: 20px; /* Adjust the gap between teams */
+
+}
+
+/* Style each player card */
+.player-card {
+    width: 100%;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    width: 300px;
+    height: 240px;
+}
+
+
+.player-name {
+    font-size: 20px; /* Set the font size for the player's name to make it bigger */
+    font-weight: bold; /* Optionally make the player's name bold */
+}
+
+/* Style player information */
+.player-info {
+    margin-bottom: 10px;
+}
+
+/* Style the "View History" link */
+.player-card a {
+    color: black;
+    text-align: center;
+    padding: 5px;
+    text-decoration: none;
+}
+
+/* Hover effect for the link */
+.player-card a:hover {
+    color: #0056b3;
+}
+
+.player-image {
+    border-radius: 50%; /* Makes the image circular */
+    border: 2px solid #333; /* Optional border style */
+    width: 100px; /* Adjust the width as needed */
+    height: 100px; /* Adjust the height as needed */
+    background-color:black; /*#353434 Set the background color*/
+}
+
+/* Style the search form container */
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+/* Style the search input container */
+.search-input-container {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Style the search input */
+.search-input {
+    padding: 10px;
+    border: none;
+    outline: none;
+    width: 300px;
+}
+
+/* Style the search button */
+.search-button {
+    background-color: #474554; /* Background color */
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* Hover effect for the search button */
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+/***********************************PLAYER HISTORY CSS********************************/
+.player-history-table{
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.player-history-table td, .player-history-table th
+{
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.player-history-table tr:nth-child(even){background-color: #f2f2f2;}
+
+.player-history-table tr:hover {background-color: #ddd;}
+
+.player-history-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #176B87;
+    color: white;
+  }
+
+.player-image-his
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%; /* Makes the image circular */
+    border: 2px solid #333; /* Optional border style */
+    width: 150px; /* Adjust the width as needed */
+    height: 150px; /* Adjust the height as needed */
+    background-color:black; /*#353434 Set the background color*/
+}
+
+
+/**************************************FOOTER***********************************/
+footer {
+    background-color: #176B87; /* Background color */
+    color: #ffffff; /* Set text color to contrast with the background */
+    padding: 15px; /* Add padding to create space around the content */
+    font-family: 'Roboto Mono', monospace;
+}
+
+/*************************CREATE PLAYER FORM CSS**********************************/
+.create-player{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background: #f2f2f2;
+    font-family: 'Montserrat', sans-serif;
+    background-image: linear-gradient(to bottom, #176b87, #286e93, #3c709d, #5271a5, #6872aa, #7972ac, #8971ac, #9970aa, #a76fa7, #b46fa3, #c06f9d, #ca6f97);
+    overflow-x: hidden;
+}
+
+.create-player-button{
+    background-color: #3498db; /* Background color */
+    color: #fff; /* Text color */
+    padding: 10px 20px; /* Padding to adjust button size */
+    margin-left: 50px;
+    border: none; /* Remove default button border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Add a pointer cursor on hover */
+}
+
+
+/*************************************FLASH MESSAGE************************************/
+.flash-message-container {
+    text-align: center;
+    margin-top: 20px; /* Adjust the margin as needed */
+  }
+
+  /* Flash message styling */
+  .alert.alert-success {
+    color: green;
+    font-weight: bold;
+    font-size: 18px;
+    border: 2px solid green;
+    background-color: #f0f8eb; /* Change the background color as needed */
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px auto; /* Center the flash message horizontally */
+    max-width: 600px; /* Set a maximum width if needed */
+  }
+
+  /* Additional styling for a smooth transition */
+  .flash-message {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .flash-message.show {
+    opacity: 1;
+  }
+/**************************USER REĢISTRĀCIJA FORM CSS*********************/
+.reg-parent-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background: #f2f2f2;
+  font-family: 'Montserrat', sans-serif;
+  background-image: linear-gradient(to bottom, #176b87, #286e93, #3c709d, #5271a5, #6872aa, #7972ac, #8971ac, #9970aa, #a76fa7, #b46fa3, #c06f9d, #ca6f97);
+  overflow-x: hidden;
+}
+
+.reg-container{
+  width: 390px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 5vw 4vw 2vw;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.reg-container a
+{
+    text-decoration: none;
+    color: #7972ac;
+}
+
+.reg-container a:hover
+{
+    text-decoration: none;
+    color: #c06f9d;
+}
+
+.reg-container p, h2 {
+    text-align: center;
+}
+
+
+.reg-input {
+    margin:auto;
+    margin-bottom: 35px; /* Add spacing between form groups */
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    color: black;
+    position: relative;
+}
+
+.reg-input label {
+    margin-bottom: 10px; /* Add space below labels */
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%; /* Make the input fields fill the container's width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.register-btn {
+    background-color: #176B87;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    width: 50%;
+}
+
+.register-btn:hover {
+    background-color: #6872aa;
+}
+
+.error{
+    color: red;
+    height: 25px; /* Set a fixed height for error messages */
+    font-size: 14px; /* Adjust font size as needed */
+    display: block;
+    position: absolute;
+    top:25px; /* Position the error message at the bottom of the relative parent */
+}
+
+.welcome-message {
+    position: absolute;
+    top: 0;
+    margin-left: 1250px;
+    margin-right: 40px;
+    margin-top: 20px;
+    color: #fff; /* Set text color as needed */
+    font-family: 'Roboto Mono', monospace;
+}
+
+.logout
+{
+    position: absolute;
+    right: 10px;
+    margin-top: 15px;
+    margin-left: 10px;
+    max-height: 40px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.edit-profile{
+    position: absolute;
+    right: 50px;
+    margin-top: 10px;
+    margin-left: 10px;
+    max-height: 45px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+/********************************************USER PROFILE VIEW******************************************/
+.user-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+    font-weight: 200;
+    background-color: white;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 25px;
+}
+
+.profile-tag{
+    font-size: large;
+    color: white;
+    text-transform: uppercase;
+    margin: 20px;
+    padding: 20px;
+    background-color: #386f9b;
+}
+
+
+  .favorites {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .favorite-item {
+    width: 45%; /* Adjust the width as needed */
+  }
+
+  .no-favorite {
+    width: 100%;
+  }
+
+  .create-player-link{
+    background-color: #ca6f97;
+    color: #fff;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: auto;
+    margin-bottom: 20px;
+    display: block;
+    width: 100px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .create-player-link:hover{
+    background-color: #ab6fa6;
+    color: white;
+  }
+
+  /*****************************ALL USERS VIEW CSS**************************************/
+  .user-table {
+    width: 95%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #bdcddf;
+    margin: auto;
+}
+
+.user-table th, .user-table td {
+    border: 2px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.user-table th {
+    background-color: #f2f2f2;
+}
+
+.user-table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.user-table td button {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 20%;
+}
+
+.user-table td button:hover {
+    background-color: #c82333;
+}
+
+/**************************************GAME CSS***************************************/
+/* public/css/styles.css */
+
+/* public/css/styles.css */
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 140px;
+}
+
+.game-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    width: 350px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+
+}
+
+.team-logos {
+    display: flex;
+    align-items: center;
+}
+
+.team-logo img {
+    max-width: 100px;
+    max-height: 100px;
+    margin: 0 10px; /* Adjust margin as needed */
+}
+
+.score {
+    font-size: 30px;
+    margin: 0 10px; /* Adjust margin as needed */
+    font-weight: 550;
+
+}
+
+.game-info {
+    margin-top: 10px;
+    background-color: #354a54;
+    color: white; /* Add text color for better visibility */
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.game-time  {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.game-date{
+    font-size: 18px;
+}
+
+.game-time-date{
+    display: flex;
+    flex-direction: column;
+}
+
+.today-game {
+    background-color: red; /* Add your styling for today's game */
+    /* Add any other styling as needed */
+}
