@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\PlayerHistory;
 use App\Models\Player;
 use App\Models\Season;
+use App\Models\Team;
 
 class PlayerHistoryController extends Controller
 {
@@ -17,12 +18,12 @@ class PlayerHistoryController extends Controller
     return view('/players/playershis', compact('player', 'playerHistory'));
 }
 
-public function create()
+public function create($playerId)
 {
     $seasons = Season::all();
     $playerHistory = PlayerHistory::with('season', 'team')->get();
 
-    return view('players.create_his', compact('playerHistory','seasons'));;
+    return view('players.create_his', compact('playerHistory','seasons', 'playerId'));;
 }
 
    public function store(Request $request)
@@ -31,7 +32,7 @@ public function create()
 
        $formFields2 = $request->validate([
                'player_id' => 'required',
-               'team_id' => 'required',
+               'team_id' => 'required|exists:teams,team_id',
                'jersey_number' => 'required',
                'season_id' => 'required'
            ]);
@@ -39,13 +40,12 @@ public function create()
            $seasonId = $request->input('season_id');
 
     // Add the season_id to the form fields
-    $formFields2['season_id'] = $seasonId;
+        $formFields2['season_id'] = $seasonId;
+
+        PlayerHistory::create($formFields2);
+        return redirect('/players')->with('success', 'Player history created successfully!');
 
 
-
-           PlayerHistory::create($formFields2);
-
-           return redirect('/players')->with('success', 'Player history created successfully');
         }
 }
 

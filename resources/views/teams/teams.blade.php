@@ -34,13 +34,13 @@
                     @auth
                     <form method="POST" action="{{ route('users.addFavoriteTeam', ['team' => $team->team_id]) }}">
                         @csrf
-                        <button type="submit" class="btn btn-primary">Set as Favorite Team</button>
+                        <button type="submit" class="favorite-button">Set as Favorite Team</button>
                     </form>
                     @if (auth()->check() && auth()->user()->isAdmin)
                     <form method="POST" action="{{ route('teams.destroy', $team->team_id) }}" style="display: inline-block;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" onclick="return confirm('Are you sure you want to delete this team?')">Delete</button>
+                        <button  class="delete-button" type="submit" onclick="return confirm('Are you sure you want to delete this team?')">Delete</button>
                     </form>
                     @else
                   @endif

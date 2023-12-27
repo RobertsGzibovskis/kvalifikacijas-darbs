@@ -4,9 +4,14 @@
     <h1>{{ $player->name }} {{ $player->surname }}</h1>
     <img src="{{ asset('players_images/' . $player->image_name) }}" alt="{{ $player->name }}"class="player-image-his">
     @foreach($playerHistory as $history)
-    <h2>#{{$history->jersey_number}} | {{$player->position}} | {{$history->team->team_name}}</h2>
-    @endforeach
-
+    @if($history->season_id == 10)
+        <h2>#{{$history->jersey_number}} | {{$player->position}} | <img class="player-team-logo-his" src="{{ asset('team_logos/' . $history->team->logo_filename) }}" alt="Team Logo"></h2>
+    @endif
+@endforeach
+@if (auth()->check() && auth()->user()->isAdmin)
+    <a class="create-player-link" href="{{ route('history.create', ['playerId' => $player->player_id]) }}">Add Player History</a>
+@else
+@endif
 
 
     <table class="player-history-table">

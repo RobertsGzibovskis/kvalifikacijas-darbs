@@ -14,10 +14,14 @@ class Player extends Model
     protected $primaryKey = 'player_id'; // Set the primary key column name
 
     public function playerHistory()
-{
-    return $this->hasOne(PlayerHistory::class, 'player_id');
+    {
+        return $this->hasOne(PlayerHistory::class, 'player_id');
+    }
 
-}
+public function playerGameStatistics()
+    {
+        return $this->hasMany(PlayerGameStatistics::class, 'player_id');
+    }
 
 
 }

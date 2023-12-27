@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Player</title>
+    <title>Add Player History</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
 </head>
 
@@ -17,11 +17,12 @@
         @csrf
 
         <div class="reg-input">
-            <input id="player_id" type="text" name="player_id" placeholder="Player ID" value="{{ old('player_id') }}" class="form-control">
+            <input id="player_id" type="hidden" name="player_id" value="{{ $playerId }}">
             @error('player_id')
-            <p class="error">{{$message}}</p>
+                <p class="error">{{$message}}</p>
             @enderror
-            </div>
+        </div>
+
 
         <div class="reg-input">
         <input id="team_id" type="text" name="team_id" placeholder="Team ID" value="{{ old('team_id') }}" class="form-control">
@@ -49,15 +50,8 @@
                 @enderror
             </div>
 
-
-
-
-
-
         <button class="register-btn" type="submit">Add Player</button>
     </form>
-
-
     </div>
 </div>
   </body>

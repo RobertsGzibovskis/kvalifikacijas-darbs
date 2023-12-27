@@ -125,6 +125,7 @@ nav a + a {
     margin: 0 auto; /* Center the element horizontally*/
     margin-bottom: 20px;
     padding: 20px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .team {
@@ -133,7 +134,7 @@ nav a + a {
     margin: 10px;
     padding: 10px;
     width: 300px; /* Adjust the width as needed */
-    height: 200px; /* Adjust the height as needed */
+    height: 240px; /* Adjust the height as needed */
     background-color: #f5f5f5;
     border: 1px solid #ddd;
     padding: 10px;
@@ -187,8 +188,9 @@ nav a + a {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
+    font-family: 'Montserrat', sans-serif;
     width: 300px;
-    height: 240px;
+    height: 270px;
 }
 
 
@@ -263,6 +265,49 @@ nav a + a {
     background-color: #0056b3;
 }
 
+#no-player-found {
+    color: rgb(197, 19, 19);
+    align-items: center;
+    margin-left:250px;
+
+}
+
+.create-player-link{
+    background-color: #55cb92;
+    color: #fff;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: auto;
+    margin-bottom: 20px;
+    display: block;
+    width: 100px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .create-player-link:hover{
+    background-color: #46ae7c;
+    color: white;
+  }
+  .player-team-logo{
+    max-width: 35px; /* Adjust the maximum width as needed */
+    max-height: 35px; /* Adjust the maximum height as needed */
+    width: auto;
+    height: auto; /* These ensure the image will not exceed the specified max-width and max-height */
+    vertical-align: middle; /* Align the image vertically with the text */
+  }
+
+  .player-team-logo-his{
+    max-width: 50px; /* Adjust the maximum width as needed */
+    max-height: 50px; /* Adjust the maximum height as needed */
+    width: auto;
+    height: auto; /* These ensure the image will not exceed the specified max-width and max-height */
+    vertical-align: middle; /* Align the image vertically with the text */
+  }
 /***********************************PLAYER HISTORY CSS********************************/
 .player-history-table{
     font-family: Arial, Helvetica, sans-serif;
@@ -520,25 +565,7 @@ footer {
     width: 100%;
   }
 
-  .create-player-link{
-    background-color: #ca6f97;
-    color: #fff;
-    padding: 10px 30px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: auto;
-    margin-bottom: 20px;
-    display: block;
-    width: 100px;
-    text-decoration: none;
-    font-weight: bold;
-  }
 
-  .create-player-link:hover{
-    background-color: #ab6fa6;
-    color: white;
-  }
 
   /*****************************ALL USERS VIEW CSS**************************************/
   .user-table {
@@ -655,4 +682,183 @@ footer {
 .today-game {
     background-color: red; /* Add your styling for today's game */
     /* Add any other styling as needed */
+}
+
+.hidden {
+    display: none;
+  }
+
+/*****************************************GOALIE CSS**************************************/
+.golaie-container{
+    background-color: #fff6ff;
+    padding: 40px;
+    width: 60%;
+    margin: 0 auto; /* Center the element horizontally*/
+}
+
+.goalie-card{
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.statistics {
+    margin-top: 20px;
+    text-align: center; /* Center align the content */
+}
+
+.statistics h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.statistics ul {
+    list-style: none;
+    padding: 0;
+    display: flex; /* Display the list items in a row */
+    justify-content: space-around; /* Distribute the space between items evenly */
+}
+
+.statistics li {
+    font-size: 16px;
+    margin-bottom: 8px;
+    text-align: center; /* Center align the text within list items */
+}
+
+.stat-label{
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.stat-label,
+.stat-value {
+    display: inline-block; /* Display labels and values inline */
+    width: 50%; /* Set the width to 50% to ensure they are on the same line */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+/************************************GAME DETAILS CSS***************************************/
+.game-details-head {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+}
+
+.team-logo-details {
+    width: 120px; /* Adjust the size as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 200px; /* Increase spacing between logos */
+}
+
+.vs-text {
+    font-size: 18px; /* Adjust the size of "VS" as needed */
+    font-weight: 700;
+    margin: 0 10px; /* Adjust spacing between "VS" and scores */
+    font-family: "Inter", Arial, sans-serif;
+}
+
+.score-details {
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 48px; /* Adjust the size of scores as needed */
+    font-weight: 900;
+    margin: 0 10px; /* Increase spacing between scores */
+}
+
+.score-home {
+    margin-right: 300px; /* Adjust spacing between score-home and "VS" */
+}
+
+.score-away {
+    margin-left: 300px; /* Adjust spacing between "VS" and score-away */
+}
+
+.sheet-header{
+    font-family: 'Montserrat', sans-serif;
+}
+table.game-sheet {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Styles for table header row */
+table.game-sheet thead tr {
+    background-color: #f2f2f2;
+}
+
+/* Styles for table header cells */
+table.game-sheet th {
+    padding: 10px;
+    border: 1px solid #dddddd;
+    text-align: left;
+}
+
+/* Styles for table body cells */
+table.game-sheet td {
+    padding: 10px;
+    border: 1px solid #dddddd;
+    text-align: center;
+}
+
+/***********************************************POGU CSS*******************************************/
+
+.btn {
+    margin-bottom: 8px; /* Add some space between the buttons */
+}
+
+.delete-button {
+    background-color: #dc3545; /* Bootstrap red color, you can customize this */
+    color: #fff; /* Text color */
+    border: none; /* Remove border */
+    padding: 8px 16px; /* Padding for better visual appearance */
+    cursor: pointer;
+    border-radius: 4px; /* Optional: Add rounded corners */
+    font-size: 14px; /* Adjust font size as needed */
+    transition: background-color 0.3s ease; /* Add a smooth transition effect on hover */
+}
+
+.delete-button:hover {
+    background-color: #c82333; /* Darker red color on hover */
+}
+
+.favorite-button {
+    background-color: #00ad9e; /* Blue color */
+    color: #fff; /* Text color */
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect on hover */
+    margin-bottom: 5px;
+}
+
+.favorite-button:hover {
+    background-color: #008f88; /* Darker blue color on hover */
+}
+
+.favorite-button:active,
+.favorite-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #007bff; /* Optional: Add a subtle border on focus */
+}
+
+.edit-game{
+    background-color: #00ad9e; /* Blue color */
+    color: #fff; /* Text color */
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect on hover */
+    margin-bottom: 5px;
 }

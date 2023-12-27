@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Team;
+use App\Models\PlayerHistory;
+use App\Models\Game;
+use App\Models\Player;
+use App\Models\PlayerGameStatistics;
 
 class TeamController extends Controller
 {
@@ -37,7 +41,20 @@ class TeamController extends Controller
 
    public function destroy(Team $team)
    {
-       $team->delete();
+
+    PlayerHistory::where('team_id', $team->team_id)->delete();
+
+    $gameIds = Game::where('home_team_id', $team->team_id)
+        ->orWhere('away_team_id', $team->team_id)
+        ->pluck('game_id');
+
+    PlayerGameStatistics::whereIn('game_id', $gameIds)->delete();
+
+    Game::where('home_team_id', $team->team_id)
+    ->orWhere('away_team_id', $team->team_id)
+    ->delete();
+
+    $team->delete();
 
        return redirect('/teams')->with('success', 'Team deleted successfully');
    }

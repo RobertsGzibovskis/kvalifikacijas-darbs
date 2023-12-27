@@ -27,13 +27,14 @@ class UserController extends Controller
    {
     $formFields = $request->validate([
         'name' => 'required',
-        'username' => 'required',
+        'username' => ['required', Rule::unique('users', 'username')],
         'email' => ['required', 'email', Rule::unique('users', 'email')],
         'password' => 'required|confirmed|min:8'
        ],
        [
         'name.required' => 'The name field is required.',
         'username.required' => 'The username field is required.',
+        'username.unique' => 'The username has already been taken.',
         'email.required' => 'The email field is required.',
         'email.email' => 'The email must be a valid email address.',
         'password.required' => 'The password field is required.',
@@ -105,28 +106,34 @@ class UserController extends Controller
 
 
    //Atjauno lietotāja profila informāciju
-    public function update(Request $request, User $user)
+   public function update(Request $request, User $user)
    {
-    $formFields = $request->validate([
-        'name' => 'required',
-        'username' => 'required',
-        'password' => 'required|confirmed|min:8'
+       $formFields = $request->validate([
+           'name' => 'nullable',
+           'username' => ['nullable', Rule::unique('users', 'username')],
+           'email' => 'nullable|email|unique:users,email,' . $user->id,
+           'password' => 'nullable|confirmed|min:8',
        ],
        [
-        'name.required' => 'The name field is required.',
-        'username.required' => 'The username field is required.',
-        'password.required' => 'The password field is required.',
-    ]);
+           'email.unique' => 'The email has already been taken.',
+           'username.unique' => 'The username has already been taken.',
+           'password.min' => 'The password must be at least :min characters.',
+       ]);
 
-    unset($formFields['email']);
+       // Remove null or empty values from the formFields
+       $formFields = array_filter($formFields, function ($value) {
+           return $value !== null && $value !== '';
+       });
 
-    //Paroles hashoshana
-    $formFields['password'] = bcrypt($formFields['password']);
+       // Hash the password if provided
+       if (isset($formFields['password'])) {
+           $formFields['password'] = bcrypt($formFields['password']);
+       }
 
-    $user->update($formFields);
+       $user->update($formFields);
 
-    return redirect('/users/{id}/show')->with('message', "Profile has been edited!");
-}
+       return redirect("/users/{$user->id}/show")->with('message', 'Profile has been edited!');
+   }
 
 
 public function favoriteTeam()

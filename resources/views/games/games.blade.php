@@ -4,7 +4,17 @@
 
 @section('content')
     <h1>Games</h1>
-
+    <div class="flash-message-container">
+        @if(session('success'))
+          <div id="flash-message" class="alert alert-success">
+              {{ session('success') }}
+          </div>
+        @endif
+      </div>
+    @if (auth()->check() && auth()->user()->isAdmin)
+    <a class="create-player-link" href="/game/create">Create game</a>
+    @else
+    @endif
     <div class="game-container">
         <div class="game-grid">
             @foreach ($games as $game)
@@ -14,11 +24,11 @@
                         <div class="team-logo">
                             <img src="{{ asset('team_logos/' . $game->homeTeam->logo_filename) }}" alt="{{ $game->homeTeam->team_name }} Logo">
                         </div>
-                        @if ($game->home_team_score !== null && $game->away_team_score !== null)
+                        @if($game->game_status == 'Final')
                         <div class="score">
-                            <span>{{ $game->home_team_score }}</span>
+                            <span>{{ $game->homeTeamScore }}</span>
                             <span>:</span>
-                            <span>{{ $game->away_team_score }}</span>
+                            <span>{{ $game->awayTeamScore }}</span>
                         </div>
                     @else
                     <div class="game-time-date">
@@ -42,6 +52,15 @@
                 <a href="{{ route('game.details', ['game_id' => $game->game_id]) }}" class="game-link">
                     View Game Details
                 </a>
+            @endif
+            @if (auth()->check() && auth()->user()->isAdmin)
+            <button class="edit-game" onclick="location.href='{{ route('game.edit', ['game_id' => $game->game_id]) }}'">Edit game</button>
+            <form method="POST" action="{{ route('game.destroy', ['game_id' => $game->game_id]) }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="delete-button">Delete Game</button>
+            </form>
+            @else
             @endif
                 </div>
             @endforeach

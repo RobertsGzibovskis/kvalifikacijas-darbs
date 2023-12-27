@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Player;
 use App\Models\PlayerHistory;
+use App\Models\PlayerGameStatistics;
 
 class PlayerController extends Controller
 {
@@ -55,16 +56,59 @@ class PlayerController extends Controller
 
 $player = Player::create($formFields);
 
-// Retrieve the ID of the player you just created
-$playerId = $player->id;
+
+$playerId = $player->player_id;
 
 return redirect()->route('history.create', ['playerId' => $playerId])->with('success', 'Player created successfully');
 }
 
+
+ //Spēlētāja edit view atgriešana
+public function edit($id)
+{
+    $player = Player::findOrFail($id);
+    return view('players.edit', compact('player'));
+}
+
+
+ //Spēlētāja update funkcija
+ public function update(Request $request, $id)
+ {
+     $player = Player::findOrFail($id);
+
+     // Validate the fields
+     $validatedData = $request->validate([
+         'name' => 'nullable',
+         'surname' => 'nullable',
+         'team_id' => 'nullable',
+         'image_name' => 'nullable',
+         'position' => 'nullable',
+         // Add other fields as needed
+     ]);
+
+     // Filter out null values
+     $filteredData = array_filter($validatedData, function ($value) {
+         return $value !== null;
+     });
+
+     // Update the player with the filtered data
+     $player->update($filteredData);
+
+     return redirect('/players')->with('success', 'Player updated successfully!');
+ }
+
+
+
+
 public function destroy(Player $player)
    {
 
+    $player->playerGameStatistics()->delete();
+
     $player->playerHistory()->delete();
+
+    \DB::table('users')->where('favorite_player_id', $player->player_id)->update(['favorite_player_id' => null]);
+
 
     $player->delete();
 
@@ -72,3 +116,4 @@ public function destroy(Player $player)
    }
 
 }
+

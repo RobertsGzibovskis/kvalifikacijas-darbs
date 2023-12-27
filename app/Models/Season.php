@@ -10,5 +10,4 @@ class Season extends Model
     use HasFactory;
 
     protected $fillable = ['season_name']; // Add other fillable attributes as needed
-    protected $table = 'season';
 }

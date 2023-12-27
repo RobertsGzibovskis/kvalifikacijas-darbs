@@ -40,6 +40,7 @@
                 <li><a href="/">Home</a></li>
                 @auth
                 <li><a href="/players">Players</a></li>
+                <li><a href="/goalies">Goalies</a></li>
                 <li><a href="/teams">Teams</a></li>
                 <li><a href="/users/{{ auth()->user()->id }}/show">Profile</a></li>
                 <li><a href="/games">Games</a></li>
