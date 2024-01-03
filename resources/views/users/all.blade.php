@@ -8,8 +8,8 @@
             <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Fav player Id</th>
-                <th>Fav team Id</th>
+                <th>Favourite player</th>
+                <th>Favourite team</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -19,12 +19,12 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     @if ($user->favoritePlayer)
-                    <td>{{ $user->favorite_player_id }}</td>
+                    <td>{{ $user->favoritePlayer->name }} {{ $user->favoritePlayer->surname }}</td>
                     @else
                   <td>No favorite player selected</td>
                   @endif
                   @if ($user->favoriteTeam)
-                    <td>{{ $user->favorite_team_id }}</td>
+                    <td>{{ $user->favoriteTeam->team_name }}</td>
                   @else
                   <td>No favorite team selected</td>
                   @endif

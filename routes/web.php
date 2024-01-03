@@ -34,7 +34,7 @@ Route::get('/players/playerhis', [PlayerHistoryController::class, 'index'])->mid
 
 
 //Playeru meklēšana
-Route::post('/search-players', 'App\Http\Controllers\PlayerController@searchPlayers')->name('searchPlayers');
+Route::any('/search-players', 'App\Http\Controllers\PlayerController@searchPlayers')->name('searchPlayers');
 
 //Playeru veidošana
 Route::get('players/create', [PlayerController::class, 'create'])->middleware('admin')->middleware('auth');;

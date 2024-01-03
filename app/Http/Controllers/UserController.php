@@ -164,7 +164,7 @@ public function destroy(User $user)
 {
     $user->delete();
 
-    return redirect('/')->with('success', 'User deleted successfully');
+    return redirect('/')->with('message', 'User deleted successfully!');
 }
 
 }

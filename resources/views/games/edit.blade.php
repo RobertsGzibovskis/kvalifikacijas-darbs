@@ -31,16 +31,19 @@
             </select>
             </div>
 
-            <!-- Fields to show only when 'Scheduled' is selected -->
 
 
             <div class="reg-input">
+                <label for="winning_team_id">Winning Team</label>
+                <select name="winning_team_id" id="winning_team_id" class="form-control">
+                    <option value="" disabled selected>Select Winning Team</option>
+                    <option value="{{ $game->homeTeam->team_id }}">{{ $game->homeTeam->team_name }}</option>
+                    <option value="{{ $game->awayTeam->team_id }}">{{ $game->awayTeam->team_name }}</option>
 
-                <input type="text" name="winning_team_id" placeholder="Winning Team ID" value="{{ old('winning_team_id') }}" class="form-control">
-                @error('winning_team_id')
-                <p class="error">{{$message}}</p>
-              @enderror
+                </select>
             </div>
+
+
 
             <div class="reg-input">
 

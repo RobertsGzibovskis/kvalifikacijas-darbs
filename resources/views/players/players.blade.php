@@ -68,6 +68,7 @@
         @endif
     </div>
 </div>
+{{ $players->appends(['search' => $search])->links() }}
     </div>
 </body>
 </html>

@@ -30,11 +30,13 @@
             @enderror
             </div>
 
-        <div class="reg-input">
-            <input id="team_id" type="text" name="team_id" placeholder="Team ID" value="{{ old('team_id') }}" class="form-control">
-            @error('team_id')
-                <p class="error">{{$message}}</p>
-            @enderror
+            <div class="reg-input">
+                <label for="team_id">Team Name</label>
+                <select name="team_id" id="team_id" class="form-control">
+                    @foreach($teams as $team)
+                        <option value="{{ $team->team_id }}">{{ $team->team_name }}</option>
+                    @endforeach
+                </select>
             </div>
 
         <div class="reg-input">

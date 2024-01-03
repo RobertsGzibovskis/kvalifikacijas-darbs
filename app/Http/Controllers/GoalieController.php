@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Goalie;
 use Illuminate\Http\Request;
+use App\Models\Team;
 
 class GoalieController extends Controller
 {
@@ -22,7 +23,8 @@ class GoalieController extends Controller
 
     public function create()
     {
-        return view('goalies.create');
+        $teams = Team::all();
+        return view('goalies.create', compact('teams'));
     }
 
     public function store(Request $request)
@@ -32,10 +34,10 @@ class GoalieController extends Controller
         'surname' => 'required',
         'team_id' => 'required',
         'image_name' => 'required',
-        'shutouts'  => 'required',
+        'shutouts'  => 'required|integer',
         'gaa'  => 'required',
-        'assists'  => 'required',
-        'jersey_number'  => 'required'
+        'assists'  => 'required|integer',
+        'jersey_number'  => 'required|integer'
        ],
        [
         'name.required' => 'The name field is required.',
@@ -48,6 +50,10 @@ class GoalieController extends Controller
         'jersey_number.required' => 'The jersey number field is required'
     ]);
 
+    $teamID= $request->input('team_id');
+
+    $formFields['team_id'] = $teamID;
+
     $goalie = Goalie::create($formFields);
 
     return redirect('/goalies')->with('success', 'Goalie created successfully');
@@ -56,7 +62,8 @@ class GoalieController extends Controller
 public function edit($id)
 {
     $goalie = Goalie::findOrFail($id);
-    return view('goalies.edit', compact('goalie'));
+    $teams = Team::all(); // Assuming you want to retrieve all teams
+    return view('goalies.edit', compact('goalie', 'teams'));
 }
 
 public function update(Request $request, $id)
@@ -69,16 +76,20 @@ public function update(Request $request, $id)
         'surname' => 'nullable',
         'team_id' => 'nullable',
         'image_name' => 'nullable',
-        'shutouts' => 'nullable',
+        'shutouts' => 'nullable|integer',
         'gaa' => 'nullable',
-        'assists' => 'nullable',
-        'jersey_number' => 'nullable',
+        'assists' => 'nullable|integer',
+        'jersey_number' => 'nullable|integer',
     ]);
 
     // Filter out null values
     $filteredData = array_filter($validatedData, function ($value) {
         return $value !== null;
     });
+
+    $teamID= $request->input('team_id');
+
+    $validatedData['team_id'] = $teamID;
 
     // Update the goalie with the filtered data
     $goalie->update($filteredData);

@@ -35,7 +35,7 @@
     <li><div class="register"><a href="/register" ><img src="{{ asset('sign_up_30.png') }}" alt="Login"></div>
     </a></li>
     @endauth
-        <nav>
+        <nav class="navigation">
             <ul>
                 <li><a href="/">Home</a></li>
                 @auth
@@ -62,7 +62,6 @@
     </main>
 
     <footer>
-        <!-- Your website footer content, e.g., copyright information -->
         <p>&copy; {{ date('Y') }} Sports Statistics</p>
     </footer>
 

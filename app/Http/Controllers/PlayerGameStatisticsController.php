@@ -12,8 +12,6 @@ class PlayerGameStatisticsController extends Controller
         // Retrieve player game statistics for the given game
         $playerStats = $game->playerStatistics;
 
-
-
         return view('game.show', compact('game', 'playerStats'));
     }
 }

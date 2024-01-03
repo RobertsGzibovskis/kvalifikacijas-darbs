@@ -45,42 +45,51 @@
 
                 <!-- Fields to show only when 'Scheduled' is selected -->
 
-                    <div class="reg-input">
 
-                        <input type="text" name="home_team_id" placeholder="Home Team ID" value="{{ old('home_team_id') }}" class="form-control">
-                        @error('home_team_id')
-                    <p class="error">{{$message}}</p>
-                  @enderror
-                    </div>
 
-                    <div class="reg-input">
+                        <div class="reg-input">
+                            <label for="home_team_id">Home Team</label>
+                            <select name="home_team_id" id="home_team_id" class="form-control">
+                                @foreach($teams as $team)
+                                    <option value="{{ $team->team_id }}">{{ $team->team_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                        <input type="text" name="away_team_id" placeholder="Away Team ID" value="{{ old('away_team_id') }}" class="form-control">
-                        @error('away_team_id')
-                        <p class="error">{{$message}}</p>
-                      @enderror
-                    </div>
+                        <div class="reg-input">
+                            <label for="away_team_id">Away Team</label>
+                            <select name="away_team_id" id="away_team_id" class="form-control">
+                                @foreach($teams as $team)
+                                    <option value="{{ $team->team_id }}">{{ $team->team_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                    <div class="reg-input">
-
-                        <input type="text" name="season_id" placeholder="Season ID" value="{{ old('season_id') }}" class="form-control">
-                        @error('season_id')
-                        <p class="error">{{$message}}</p>
-                      @enderror
-                    </div>
+                        <div class="reg-input">
+                            <label for="season_id">Select Season</label>
+                            <select id="season_id" name="season_id" class="form-control">
+                                @foreach($seasons as $season)
+                                    <option value="{{ $season->season_id }}">{{ $season->season_name }}</option>
+                                @endforeach
+                            </select>
+                            @error('season_id')
+                            <p class="error">{{$message}}</p>
+                            @enderror
+                        </div>
 
 
                 <div id="finalFields" class="hidden">
 
-                <div class="reg-input">
+                    <div class="reg-input">
+                        <label for="winning_team_id">Winning Team</label>
+                        <select name="winning_team_id" id="winning_team_id" class="form-control">
+                            @foreach($teams as $team)
+                                <option value="{{ $team->team_id }}">{{ $team->team_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                    <input type="text" name="winning_team_id" placeholder="Winning Team ID" value="{{ old('winning_team_id') }}" class="form-control">
-                    @error('winning_team_id')
-                    <p class="error">{{$message}}</p>
-                  @enderror
-                </div>
-
-                <div class="reg-input">
+                    <div class="reg-input">
 
                 <input type="text" name="home_team_shots_on_goal" placeholder="Home Team SOG" value="{{ old('home_team_shots_on_goal') }}" class="form-control">
                     @error('home_team_shots_on_goal')

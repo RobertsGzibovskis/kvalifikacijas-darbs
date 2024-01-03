@@ -49,8 +49,8 @@
             @endforeach
         </div>
     </div>
+    {{ $teams->links() }}
 </div>
-        {{ $teams->links('pagination::bootstrap-4') }}
 
 </body>
 </html>

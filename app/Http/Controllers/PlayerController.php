@@ -11,12 +11,15 @@ class PlayerController extends Controller
 {
 
     //Player tabula
-    public function index()
+    public function index(Request $request)
     {
-        $players = Player::all();
+
+        $search = $request->input('search');
+
+        $players = Player::paginate(6);
         // $players = Player::with('playerHistory.team')->get();
 
-        return view('players/players', compact('players'));
+        return view('players/players', compact(['players', 'search']));
     }
 
     //Player meklēšana
@@ -26,9 +29,11 @@ class PlayerController extends Controller
 
     $players = Player::whereRaw('LOWER(name) LIKE ?', [strtolower("$search%")])
     ->orWhereRaw('LOWER(surname) LIKE ?', [strtolower("$search%")])
-    ->get();
+    ->paginate(6);
 
-    return view('players/players', ['players' => $players]);
+    $players->appends(['search' => $search]);
+
+    return view('players/players', ['players' => $players,'search' => $search]);
 }
 
    //Player veidošana

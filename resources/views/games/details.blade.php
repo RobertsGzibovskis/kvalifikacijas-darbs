@@ -12,6 +12,7 @@
     </div>
 
     <h2 class="sheet-header">Game Sheet</h2>
+
     <table class="game-sheet">
         <thead>
             <tr>

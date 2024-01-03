@@ -28,11 +28,16 @@
             @enderror
             </div>
 
+
         <div class="reg-input">
-            <input id="team_id" type="text" name="team_id" placeholder="Team ID" value="{{ old('shutouts') }}" class="form-control">
-            @error('team_id')
-                <p class="error">{{$message}}</p>
-            @enderror
+                <label for="team_id">Team</label>
+                <select name="team_id" id="team_id" class="form-control">
+                    @foreach($teams as $team)
+                        <option value="{{ $team->team_id }}" {{ $goalie->team_id == $team->team_id ? 'selected' : '' }}>
+                            {{ $team->team_name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
 
         <div class="reg-input">

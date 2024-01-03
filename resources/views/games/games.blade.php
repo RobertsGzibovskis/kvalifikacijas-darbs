@@ -45,8 +45,9 @@
                         </div>
                     </div>
                     <div class="game-info">
-                        <p>{{ $game->homeTeam->team_name }}    {{ $game->awayTeam->team_name }}</p>
-                        <p>{{ $game->game_status }}</p>
+                        <p>{{ $game->homeTeam->team_name }}</p>
+                        <p>VS</p>
+                        <p>{{ $game->awayTeam->team_name }}</p>
                     </div>
                     @if ($game->game_status == 'Final')
                 <a href="{{ route('game.details', ['game_id' => $game->game_id]) }}" class="game-link">
@@ -54,7 +55,7 @@
                 </a>
             @endif
             @if (auth()->check() && auth()->user()->isAdmin)
-            <button class="edit-game" onclick="location.href='{{ route('game.edit', ['game_id' => $game->game_id]) }}'">Edit game</button>
+            <button class="edit-game" onclick="location.href='{{ route('game.edit', ['game_id' => $game->game_id]) }}'">Edit Game</button>
             <form method="POST" action="{{ route('game.destroy', ['game_id' => $game->game_id]) }}">
                 @csrf
                 @method('DELETE')
@@ -66,4 +67,5 @@
             @endforeach
         </div>
     </div>
+    {{ $games->links() }}
 @endsection
