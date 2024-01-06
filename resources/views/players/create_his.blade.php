@@ -52,7 +52,7 @@
                 @enderror
             </div>
 
-        <button class="register-btn" type="submit">Add Player</button>
+        <button class="register-btn" type="submit">Add Player History</button>
     </form>
     </div>
 </div>

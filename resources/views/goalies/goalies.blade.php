@@ -22,14 +22,6 @@
 
     @else
     @endif
-    <form class="search-form" action="{{ route('searchPlayers') }}" method="POST">
-        @csrf
-        <div class="search-input-container">
-            <input type="text" name="search" placeholder="Search for goalie..." class="search-input">
-            <button type="submit" class="search-button">Search</button>
-        </div>
-    </form>
-
 
     <div class="player-container">
     <div class="player-grid">
@@ -60,7 +52,9 @@
         @endif
     </div>
 </div>
+{{ $goalies->links() }}
     </div>
+
 </body>
 </html>
 @endsection

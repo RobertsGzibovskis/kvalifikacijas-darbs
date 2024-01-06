@@ -7,6 +7,7 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Username</th>
                 <th>Email</th>
                 <th>Favourite player</th>
                 <th>Favourite team</th>
@@ -17,6 +18,7 @@
             @foreach($users as $user)
                 <tr>
                     <td>{{ $user->name }}</td>
+                    <td>{{ $user->username }}</td>
                     <td>{{ $user->email }}</td>
                     @if ($user->favoritePlayer)
                     <td>{{ $user->favoritePlayer->name }} {{ $user->favoritePlayer->surname }}</td>

@@ -4,11 +4,17 @@
     <h1>Game Details</h1>
 
     <div class="game-details-head">
+        <div class="team-details">
         <img src="{{ asset('team_logos/' . $game->homeTeam->logo_filename) }}" alt="{{ $game->homeTeam->team_name }} Logo" class="team-logo-details">
+        <span>SOG:{{$game->home_team_shots_on_goal}}</span>
+        </div>
         <span class="score-details score-home">{{ $homeTeamScore }}</span>
         <span class="vs-text">Final</span>
         <span class="score-details score-away">{{ $awayTeamScore }}</span>
+        <div class="team-details">
         <img src="{{ asset('team_logos/' . $game->awayTeam->logo_filename) }}" alt="{{ $game->awayTeam->team_name }} Logo" class="team-logo-details">
+        <span>SOG:{{$game->away_team_shots_on_goal}}</span>
+        </div>
     </div>
 
     <h2 class="sheet-header">Game Sheet</h2>
@@ -37,4 +43,5 @@
             @endforeach
         </tbody>
     </table>
+
 @endsection

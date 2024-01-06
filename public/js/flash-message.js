@@ -4,5 +4,5 @@ document.addEventListener('DOMContentLoaded', function() {
         if (flashMessage) {
             flashMessage.style.display = 'none';
         }
-    }, 5000); // 5000 milliseconds = 5 seconds, adjust as needed
+    }, 3000); // 5000 milliseconds = 5 seconds, adjust as needed
 });

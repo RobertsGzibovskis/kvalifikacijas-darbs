@@ -17,7 +17,6 @@ class PlayerController extends Controller
         $search = $request->input('search');
 
         $players = Player::paginate(6);
-        // $players = Player::with('playerHistory.team')->get();
 
         return view('players/players', compact(['players', 'search']));
     }

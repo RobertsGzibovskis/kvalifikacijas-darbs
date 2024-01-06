@@ -52,6 +52,7 @@
         </div>
 
         <button type="submit" class="register-btn">Register</button>
+        <p>Already a member?<a href="/login"> Log in now!</p>
     </form>
     </div>
 </div>

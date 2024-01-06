@@ -10,7 +10,8 @@ class GoalieController extends Controller
 {
     public function index()
     {
-        $goalies = Goalie::all();
+        $goalies = Goalie::paginate(4);
+
         return view('goalies.goalies', compact('goalies'));
     }
 
