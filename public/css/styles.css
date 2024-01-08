@@ -148,7 +148,7 @@ li::marker {
     position: absolute;
     margin-top: 10px;
     margin-left: 10px;
-    max-height: 40px; /* Set a maximum height for the logo image */
+    max-height: 40px;
 }
 
 
@@ -824,14 +824,14 @@ footer {
     color: black;
     font-family: 'Montserrat', sans-serif;
     font-family: 12px;
-    text-decoration: none; /* This removes the underline typically associated with links */
+    text-decoration: none;
 }
 
 .game-link:hover {
     color: rgba(35, 35, 35, 0.82);
     font-family: 'Montserrat', sans-serif;
     font-weight: 200;
-    text-decoration: none; /* This removes the underline typically associated with links */
+    text-decoration: none;
 }
 
 

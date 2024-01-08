@@ -16,7 +16,11 @@ class UserController extends Controller
     }
 
 
+<<<<<<< HEAD
     //Registrēšanās skata parādīšana
+=======
+    //Register skata parādīšana
+>>>>>>> 7deb037d7742af5fb0004ae0be3611dc0918cab6
     public function create()
    {
        return view('users.register');
@@ -141,7 +145,11 @@ public function favoriteTeam()
     return $this->belongsTo(Team::class, 'favorite_team_id');
 }
 
+<<<<<<< HEAD
 //Funkcija mīļākās komandas pievienošanai
+=======
+//Funkcija, kas ļauj lietotājam pievienot mīļako komandu
+>>>>>>> 7deb037d7742af5fb0004ae0be3611dc0918cab6
 public function addFavoriteTeam(\App\Models\Team $team)
 {
     $user = auth()->user();
@@ -155,7 +163,11 @@ public function favoritePlayer()
     return $this->belongsTo(Player::class, 'favorite_player_id');
 }
 
+<<<<<<< HEAD
 //Funkcija mīļākā spēlētāja pievienošanai
+=======
+//Funkcija, kas ļauj lietotājam pievienot mīļako spēlētāju
+>>>>>>> 7deb037d7742af5fb0004ae0be3611dc0918cab6
 public function addFavoritePlayer(\App\Models\Player $player)
 {
     $user = auth()->user();
