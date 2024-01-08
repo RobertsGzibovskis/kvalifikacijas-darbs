@@ -9,7 +9,7 @@ class PlayerHistory extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = 'player_history'; // Specify the correct table name
+    protected $table = 'player_history';
     protected $fillable = ['team_id', 'jersey_number', 'player_id', 'season_id'];
 
     public function team()

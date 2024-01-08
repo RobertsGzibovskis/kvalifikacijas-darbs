@@ -21,7 +21,7 @@ class PlayerHistoryController extends Controller
 public function create($playerId)
 {
     $seasons = Season::all();
-    $teams = Team::all(); // Assuming you want to retrieve all teams
+    $teams = Team::all();
     $playerHistory = PlayerHistory::with('season', 'team')->get();
 
     return view('players.create_his', compact('playerHistory','seasons', 'playerId', 'teams'));
@@ -29,7 +29,6 @@ public function create($playerId)
 
    public function store(Request $request)
    {
-       // Check if the form submission is intended for PlayerHistoryController
 
        $formFields2 = $request->validate([
                'player_id' => 'required',
@@ -38,14 +37,13 @@ public function create($playerId)
                'season_id' => 'required'
            ]);
 
+           // Iegūstam komandas ID no pieprasījuma un pievienojam to formFields2 masīvam
            $teamID= $request->input('team_id');
-
            $formFields2['team_id'] = $teamID;
 
+           //Iegūstam sezonas ID no pieprasījuma un pievienojam to formFields2 masīvam
            $seasonId = $request->input('season_id');
-
-    // Add the season_id to the form fields
-        $formFields2['season_id'] = $seasonId;
+           $formFields2['season_id'] = $seasonId;
 
         PlayerHistory::create($formFields2);
 

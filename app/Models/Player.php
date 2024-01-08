@@ -11,7 +11,7 @@ class Player extends Model
 
     public $timestamps = false;
     protected $fillable = ['name', 'surname', 'position', 'image_name'];
-    protected $primaryKey = 'player_id'; // Set the primary key column name
+    protected $primaryKey = 'player_id';
 
     public function playerHistory()
     {

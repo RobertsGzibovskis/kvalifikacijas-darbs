@@ -85,7 +85,9 @@
     var gameStatusDropdown = document.getElementById('gameStatus');
     var scheduledFields = document.getElementById('finalFields');
 
+// Funkcija, kas atjauno redzamos laukus atkarībā no izvēlnes vērtības
     function updateFinalFields() {
+         // Pārbaudam, vai izvēlnes vērtība ir "Final"
         if (gameStatusDropdown.value === 'Final') {
             scheduledFields.classList.remove('hidden');
         } else {
@@ -93,7 +95,6 @@
         }
     }
 
-    // Call updateFinalFields on page load to ensure correct initial state
     updateFinalFields();
 
     gameStatusDropdown.addEventListener('change', updateFinalFields);

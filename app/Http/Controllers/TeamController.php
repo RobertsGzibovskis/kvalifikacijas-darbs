@@ -41,19 +41,23 @@ class TeamController extends Controller
 
    public function destroy(Team $team)
    {
-
+    // Izdzēšam spēlētāju vēsturi, kas saistīta ar šo komandu
     PlayerHistory::where('team_id', $team->team_id)->delete();
 
+    // Iegūstam spēļu ID, kurās piedalās šī komanda kā mājas vai viesu komanda
     $gameIds = Game::where('home_team_id', $team->team_id)
         ->orWhere('away_team_id', $team->team_id)
         ->pluck('game_id');
 
+     // Izdzēšam spēlētāju spēles statistiku, kas saistīta ar šīm spēlēm
     PlayerGameStatistics::whereIn('game_id', $gameIds)->delete();
 
+    // Izdzēšam spēles, kurās piedalās šī komanda kā mājas vai viesu komanda
     Game::where('home_team_id', $team->team_id)
     ->orWhere('away_team_id', $team->team_id)
     ->delete();
 
+     // Izdzēšam pašu komandu
     $team->delete();
 
        return redirect('/teams')->with('success', 'Team deleted successfully');

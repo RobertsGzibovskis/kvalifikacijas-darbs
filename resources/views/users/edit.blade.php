@@ -51,7 +51,6 @@
 </div>
 
 <footer>
-    <!-- Your website footer content, e.g., copyright information -->
     <p>&copy; {{ date('Y') }} Sports Statistics</p>
 </footer>
 

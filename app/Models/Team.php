@@ -11,8 +11,8 @@ class Team extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $primaryKey = 'team_id'; // Specify the actual primary key column name
-    protected $fillable = ['logo_filename', 'team_name']; // Add other fillable attributes as needed
+    protected $primaryKey = 'team_id';
+    protected $fillable = ['logo_filename', 'team_name'];
 
     public function users()
     {

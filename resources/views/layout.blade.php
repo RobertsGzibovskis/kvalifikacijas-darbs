@@ -45,7 +45,6 @@
                 <li><a href="/users/{{ auth()->user()->id }}/show">Profile</a></li>
                 <li><a href="/games">Games</a></li>
                 @if (auth()->user()->isAdmin)
-            <!-- Button visible only to admins -->
             <li><a href="/users/all">Users</a></li>
         @endif
                 @endauth
@@ -57,14 +56,12 @@
 
     <main>
         <div class="container">
-            @yield('content') <!-- This is where the page-specific content will be inserted -->
+            @yield('content')
         </div>
     </main>
 
     <footer>
         <p>&copy; {{ date('Y') }} Sports Statistics</p>
     </footer>
-
-    <!-- Add your JavaScript files and other scripts here -->
 </body>
 </html>

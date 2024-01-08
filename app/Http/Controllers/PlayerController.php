@@ -24,8 +24,11 @@ class PlayerController extends Controller
     //Player meklēšana
     public function searchPlayers(Request $request)
 {
-    $search = $request->input('search'); // Get the search input from the request
+     // Iegūstam meklēšanas vaicājumu no pieprasījuma
+    $search = $request->input('search');
 
+    // Veic datubāzes vaicājumu, meklējot spēlētājus ar vārdiem vai uzvārdiem, kas sākas ar meklēšanas vaicājumu
+    // Pārveido meklēšanas vaicājumu mazajos burtos, lai nodrošinātu vienādu reģistroneitrālu salīdzināšanu
     $players = Player::whereRaw('LOWER(name) LIKE ?', [strtolower("$search%")])
     ->orWhereRaw('LOWER(surname) LIKE ?', [strtolower("$search%")])
     ->paginate(6);
@@ -80,7 +83,7 @@ public function edit($id)
  {
      $player = Player::findOrFail($id);
 
-     // Validate the fields
+
      $validatedData = $request->validate([
          'name' => 'nullable',
          'surname' => 'nullable',
@@ -90,12 +93,12 @@ public function edit($id)
          // Add other fields as needed
      ]);
 
-     // Filter out null values
+      // Filtrējam validētos datus, lai noņemtu null vērtības
      $filteredData = array_filter($validatedData, function ($value) {
          return $value !== null;
      });
 
-     // Update the player with the filtered data
+
      $player->update($filteredData);
 
      return redirect('/players')->with('success', 'Player updated successfully!');

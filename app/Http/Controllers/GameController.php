@@ -13,41 +13,44 @@ class GameController extends Controller
 {
     public function index()
 {
-
-
-
+    // Izvēlamies visus spēļu ierakstus no "games" tabulas
+    // Kārtojam pēc diviem kritērijiem:
+    // 1. Pēc "game_status" vērtības, kur "Final" iet priekšā, citi nāk aiz tam
+    // 2. Pēc "date" kolonnas augošā secībā (ja divas spēles ir ar vienādu "game_status")
     $games = Game::orderByRaw("CASE WHEN game_status = 'Final' THEN 1 ELSE 0 END DESC")
         ->orderBy('date')
         ->paginate(6);
 
-
+       // Iterējam cauri katrai spēlei
         foreach ($games as $game) {
             $homeTeamScore = 0;
             $awayTeamScore = 0;
 
-        // Assuming getPlayerGameStatistics is a method in your Game model
+        // Iegūstam spēlētāju statistiku konkrētajai spēlei
         $playerStats = $game->getPlayerGameStatistics();
-
+          // Iterējam cauri katram spēlētājam un aprēķinam komandu rezultātus
         foreach ($playerStats as $playerStat) {
             $player = $playerStat->player;
             $teamId = optional($player->playerHistory)->team_id;
 
             $playerStat->team_id = $teamId;
-
+          // Pārbauda, vai spēlētāja piederība komandai sakrīt ar spēles mājas komandu
+           // Ja spēlētājs pieder mājas komandai, pievieno guvumu mājas komandai
+           // Ja spēlētājs pieder viesu komandai, pievieno guvumu viesu komandai
             if ($game->home_team_id == $teamId) {
                 $homeTeamScore += $playerStat->goals;
             } else if ($game->away_team_id == $teamId){
                 $awayTeamScore += $playerStat->goals;
             }
         }
-
+          // Pievienojam aprēķinātos rezultātus pašai spēlei
         $game->homeTeamScore = $homeTeamScore;
         $game->awayTeamScore = $awayTeamScore;
     }
-
+    // Atgriežam skatu ar spēlēm, kā arī rezultātu mainīgajiem
     return view('games.games', compact('games', 'homeTeamScore', 'awayTeamScore'));
 }
-
+    //Šai funkcijai tāda pati loģika kā index() funkcijai, lai aprēķinātu spēles rezultātu
     public function showDetails($game_id, $team = null)
     {
         $game = Game::findOrFail($game_id);
@@ -55,15 +58,13 @@ class GameController extends Controller
         $homeTeamScore = 0;
         $awayTeamScore = 0;
 
-
-        // Retrieve player statistics for the given game
         $playerStats = $game->getPlayerGameStatistics();
 
 
         foreach ($playerStats as $playerStat) {
             $player = $playerStat->player;
             $teamId = optional($player->playerHistory)->team_id;
-            // You can now use $teamId as needed, for example, you might add it to the $playerStat object
+
             $playerStat->team_id = $teamId;
 
             if($game->home_team_id == $teamId)
@@ -75,7 +76,6 @@ class GameController extends Controller
             }
         }
 
-        // Pass both $game and $playerStats to the view
         return view('games.details', compact('game', 'playerStats', 'homeTeamScore', 'awayTeamScore'));
     }
 
@@ -95,7 +95,7 @@ public function create()
             'start_time.date_format' => 'The start time must be in the HH:MM format.',
 
         ];
-
+  // Pārbauda un iegūst formas laukus
         $formFields = $request->validate([
             'start_time' => 'required|date_format:H:i',
             'date' => 'required',
@@ -108,9 +108,9 @@ public function create()
             'blocks' => 'nullable|integer',
             'power_play_count' => 'nullable|integer',
             'season_id' => 'required',
-            // Add more validation rules as needed
         ], $customMessages);
 
+       // Iegūst nepieciešamos datus no pieprasījuma
         $homeId = $request->input('home_team_id');
 
         $awayId = $request->input('away_team_id');
@@ -119,11 +119,13 @@ public function create()
 
         $seasonId = $request->input('season_id');
 
+        // Pievieno izvēlētos datus formu laukiem
         $formFields['home_team_id'] = $homeId;
         $formFields['away_team_id'] = $awayId;
         $formFields['winning_team_id'] = $winId;
         $formFields['season_id'] = $seasonId;
 
+        // Nosacījums par uzvarētās komandas norādīšanu, ja spēles status ir 'Final'
         if ($request->input('game_status') === 'Final') {
             $formFields['winning_team_id'] = $request->input('winning_team_id');
         } else {
@@ -132,6 +134,7 @@ public function create()
 
         $game = Game::create($formFields);
 
+        // Izveido ierakstus komandu dalībai spēlē
         TeamParticipation::create([
             'team_id' => $homeId,
             'game_id' => $game->game_id,
@@ -158,7 +161,7 @@ public function create()
     {
         $game = Game::findOrFail($id);
 
-        // Validate and update the game data
+
         $formFields = $request->validate([
             'game_status' => 'required',
             'winning_team_id' => 'nullable',
@@ -166,9 +169,9 @@ public function create()
             'away_team_shots_on_goal' => 'nullable|integer',
             'blocks' => 'nullable|integer',
             'power_play_count' => 'nullable|integer',
-            // Add more validation rules as needed
         ]);
 
+         // Filtrējam izveidotos laukus, lai noņemtu null vērtības
         $formFields = array_filter($formFields, function ($value) {
             return $value !== null;
         });
@@ -176,6 +179,7 @@ public function create()
         $winId = $request->input('winning_team_id');
         $formFields['winning_team_id'] = $winId;
 
+          // Nosacījums par uzvarētās komandas norādīšanu, ja spēles status ir 'Final'
         if ($request->input('game_status') === 'Final') {
             $formFields['winning_team_id'] = $request->input('winning_team_id');
         } else {
@@ -183,7 +187,7 @@ public function create()
         }
 
         $formFields['winning_team_id'] = $winId;
-
+        // Atjaunojam spēles datus ar jaunajiem laukiem
         $game->update($formFields);
 
         return redirect('/games')->with('success', 'Game edited successfully!');
@@ -191,17 +195,15 @@ public function create()
 
     public function destroy($gameId)
 {
-    // Find the game
+
     $game = Game::findOrFail($gameId);
 
     $game->playerStatistics()->delete();
 
     TeamParticipation::where('game_id', $gameId)->delete();
 
-    // Delete the game
     $game->delete();
 
-    // Redirect or respond as needed
     return redirect('/games')->with('success', 'Game deleted successfully');
 }
 }
