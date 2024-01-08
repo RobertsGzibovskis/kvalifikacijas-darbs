@@ -10,6 +10,7 @@ class GoalieController extends Controller
 {
     public function index()
     {
+        // Iegūst visus `Goalie` modeļa ierakstus un sadala tos pa 4 ierakstiem lapā
         $goalies = Goalie::paginate(4);
 
         return view('goalies.goalies', compact('goalies'));

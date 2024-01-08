@@ -16,13 +16,13 @@ class UserController extends Controller
     }
 
 
-    //Register skata parādīšana
+    //Registrēšanās skata parādīšana
     public function create()
    {
        return view('users.register');
    }
 
-   //Register store
+   //Registrēšanās store
    public function store(Request $request)
    {
     $formFields = $request->validate([
@@ -46,7 +46,7 @@ class UserController extends Controller
     //Izveido lietotāju
     $user = User::create($formFields);
 
-    //Log in
+    //Pieslēģšanās (Log In)
     auth()->login($user);
 
     return redirect('/')->with('message', 'User created and logged in');
@@ -80,12 +80,14 @@ class UserController extends Controller
             'email.required' => 'The email field is required.',
             'password.required' => 'The password field is required.',
         ]);
-        if(auth()->attempt($formFields))
-        {
-            $request->session()->regenerate();
 
+        if(auth()->attempt($formFields))
+        {// Atjauno sesiju pēc veiksmīgas autentifikācijas
+            $request->session()->regenerate();
+             // Novirza uz galveno lapu ar paziņojumu, ka lietotājs ir pierakstījies
             return redirect('/')->with('message', "You are logged in!");
         }
+        // Ja autentifikācija neizdodas, atgriež atpakaļ ar kļūdu paziņojumu un saglabā ievadīto e-pastu
         return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
     }
 
@@ -139,7 +141,7 @@ public function favoriteTeam()
     return $this->belongsTo(Team::class, 'favorite_team_id');
 }
 
-//Funkcija, kas ļauj lietotājam pievienot mīļako komandu
+//Funkcija mīļākās komandas pievienošanai
 public function addFavoriteTeam(\App\Models\Team $team)
 {
     $user = auth()->user();
@@ -153,7 +155,7 @@ public function favoritePlayer()
     return $this->belongsTo(Player::class, 'favorite_player_id');
 }
 
-//Funkcija, kas ļauj lietotājam pievienot mīļako spēlētāju
+//Funkcija mīļākā spēlētāja pievienošanai
 public function addFavoritePlayer(\App\Models\Player $player)
 {
     $user = auth()->user();

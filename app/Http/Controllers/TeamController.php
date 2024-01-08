@@ -13,6 +13,7 @@ class TeamController extends Controller
 {
     public function index()
     {
+        // Iegūst visus `Team` modeļa ierakstus un sadala tos pa 6 ierakstiem lapā
         $teams = Team::paginate(6);
 
         return view('teams/teams', compact('teams'));

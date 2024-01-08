@@ -15,7 +15,7 @@ class PlayerController extends Controller
     {
 
         $search = $request->input('search');
-
+        // Iegūst visus `Player` modeļa ierakstus un sadala tos pa 6 ierakstiem lapā
         $players = Player::paginate(6);
 
         return view('players/players', compact(['players', 'search']));

@@ -195,13 +195,13 @@ public function create()
 
     public function destroy($gameId)
 {
-
+      // Atrod spēli ar norādīto ID
     $game = Game::findOrFail($gameId);
-
+       // Dzēš saistīto spēlētāju statistikas, izmantojot attiecību, kas definēta Game modelī
     $game->playerStatistics()->delete();
-
+    // Dzēš komandas dalību, kas saistīta ar šo spēli
     TeamParticipation::where('game_id', $gameId)->delete();
-
+    // Dzēš pašu spēli
     $game->delete();
 
     return redirect('/games')->with('success', 'Game deleted successfully');
