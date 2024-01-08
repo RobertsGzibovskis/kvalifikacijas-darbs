@@ -43,7 +43,7 @@
                 </select>
                 </div>
 
-                <!-- Fields to show only when 'Scheduled' is selected -->
+                <!-- Lauki, kuri tiek rādīti, kad ir izvēlēta vērtība 'Scheduled' -->
 
 
 
@@ -127,20 +127,23 @@
     </div>
 
     <script>
+        // Iegūstam atsauce uz izvēlnes elementu ar id "gameStatus"
         var gameStatusDropdown = document.getElementById('gameStatus');
+        // Iegūstam atsauces uz laukiem, kas jāparāda, kad spēle ir "Final"
         var scheduledFields = document.getElementById('finalFields');
 
         gameStatusDropdown.addEventListener('change', function () {
+             // Pārbaudam, vai izvēlnes vērtība ir "Final"
           if (gameStatusDropdown.value === 'Final') {
+            // Ja ir "Final", noņemam klasi "hidden", lai parādītu laukus
             scheduledFields.classList.remove('hidden');
           } else {
+            // Ja nav "Final", pievienojam klasi "hidden", lai paslēptu laukus
             scheduledFields.classList.add('hidden');
           }
 
           updateFinalFields();
         });
-
-
       </script>
 
 </body>

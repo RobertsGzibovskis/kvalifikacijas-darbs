@@ -33,9 +33,11 @@
                     @else
                     <div class="game-time-date">
                     <div class="game-time">
+                         <!-- Attēlojam spēles sākuma laiku, izmantojot Carbon datuma un laika bibliotēku -->
                         {{ \Carbon\Carbon::parse($game->start_time)->format('H:i') }}
                     </div>
                     <div class="game-date">
+                         <!-- Attēlojam spēles datumu, izmantojot Carbon datuma un laika bibliotēku -->
                         {{ \Carbon\Carbon::parse($game->date)->format('m/d') }}
                     </div>
                     </div>

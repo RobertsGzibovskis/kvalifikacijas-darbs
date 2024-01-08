@@ -45,7 +45,6 @@ Route::post('/players', [PlayerController::class, 'store']);
 //Playeru rediģēšanas skats
 Route::get('/players/{playerId}/edit', [PlayerController::class, 'edit'])->name('players.edit')->middleware('admin');
 
-//
 Route::put('/players/{playerId}', [PlayerController::class, 'update'])->name('players.update')->middleware('admin');
 
 Route::get('/players/{playerId}/create/history', [PlayerHistoryController::class, 'create'])->name('history.create')->middleware('admin');
@@ -141,17 +140,17 @@ Route::delete('/games/{game_id}', [GameController::class, 'destroy'])->name('gam
 
 
 /*************************************GOALIE ROUTES****************************************/
-
+//Goalie routes
 Route::get('/goalies', [GoalieController::class, 'index'])->name('goalies.index')->middleware('auth');
-
+//Create goalie routes
 Route::get('/goalies/create', [GoalieController::class, 'create'])->name('goalies.create')->middleware('admin');
-
+//Store goalie routes
 Route::post('/goalies/store', [GoalieController::class, 'store'])->name('goalies.store');
-
+//Vienas goalie routes
 Route::get('/goalies/{goalieId}', [GoalieController::class, 'showGoalie'])->name('goalies.showGoalie')->middleware('auth');
-
+//Edit goalie
 Route::get('/goalies/{goalieId}/edit', [GoalieController::class, 'edit'])->name('goalies.edit')->middleware('admin');
-
+//Update goalie
 Route::put('/goalies/{goalieId}', [GoalieController::class, 'update'])->name('goalies.update');
-
+//Delete goalie
 Route::delete('/goalies/{goalieId}', [GoalieController::class, 'destroy'])->name('goalies.destroy');

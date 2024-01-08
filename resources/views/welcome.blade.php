@@ -1,8 +1,13 @@
 @extends('layout')
 
 @section('content')
-<div class="background-image">
 
+
+
+
+<div class="background-image">
+    <h1>Sports Statistics Website</h1>
+</div>
 <div class="flash-message-container">
     @if(session('message'))
       <div id="flash-message" class="alert alert-success">
@@ -10,10 +15,6 @@
       </div>
     @endif
   </div>
-
-  <h1>Sports Statistics Website</h1>
-</div>
-
 <div class="home-info">
     <h2>Information about the website</h2>
     <p>
@@ -22,7 +23,6 @@
          a fantasy league enthusiast, or someone who simply enjoys staying informed,
         our platform is your go-to destination for in-depth statistical analysis.
     </p>
-    <!-- Add more content as needed -->
 </div>
 
 

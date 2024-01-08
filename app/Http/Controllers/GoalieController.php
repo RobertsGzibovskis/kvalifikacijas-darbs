@@ -36,7 +36,7 @@ class GoalieController extends Controller
         'team_id' => 'required',
         'image_name' => 'required',
         'shutouts'  => 'required|integer',
-        'gaa'  => 'required',
+        'gaa' => ['required', 'regex:/^\d+\.\d{2}$/'],
         'assists'  => 'required|integer',
         'jersey_number'  => 'required|integer'
        ],
@@ -47,10 +47,11 @@ class GoalieController extends Controller
         'image_name.required' => 'The image name field is required',
         'shutouts.required' => 'The shutouts field is required',
         'gaa.required' => 'The gaa field is required',
+        'gaa.regex' => 'The GAA field must be a decimal number.',
         'assists.required' => 'The assists field is required',
         'jersey_number.required' => 'The jersey number field is required'
     ]);
-
+    // Iegūstam komandas ID no pieprasījuma un pievienojam to formFields masīvam
     $teamID= $request->input('team_id');
 
     $formFields['team_id'] = $teamID;
@@ -63,7 +64,7 @@ class GoalieController extends Controller
 public function edit($id)
 {
     $goalie = Goalie::findOrFail($id);
-    $teams = Team::all(); // Assuming you want to retrieve all teams
+    $teams = Team::all();
     return view('goalies.edit', compact('goalie', 'teams'));
 }
 
@@ -71,28 +72,29 @@ public function update(Request $request, $id)
 {
     $goalie = Goalie::findOrFail($id);
 
-    // Validate the fields
     $validatedData = $request->validate([
         'name' => 'nullable',
         'surname' => 'nullable',
         'team_id' => 'nullable',
         'image_name' => 'nullable',
         'shutouts' => 'nullable|integer',
-        'gaa' => 'nullable',
+        'gaa' => ['nullable', 'regex:/^\d+\.\d{2}$/'],
         'assists' => 'nullable|integer',
         'jersey_number' => 'nullable|integer',
+    ],
+    [
+        'gaa.regex' => 'The GAA field must be a decimal number.',
     ]);
 
-    // Filter out null values
+  // Filtrējam validētos datus, lai noņemtu null vērtības
     $filteredData = array_filter($validatedData, function ($value) {
         return $value !== null;
     });
 
+     // Iegūstam komandas ID no pieprasījuma un pievienojam to validētajiem datiem
     $teamID= $request->input('team_id');
-
     $validatedData['team_id'] = $teamID;
 
-    // Update the goalie with the filtered data
     $goalie->update($filteredData);
 
     return redirect('/goalies')->with('success', 'Goalie updated successfully!');

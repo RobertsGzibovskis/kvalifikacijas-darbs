@@ -16,7 +16,7 @@ class UserController extends Controller
     }
 
 
-    //Register parādīt
+    //Register skata parādīšana
     public function create()
    {
        return view('users.register');
@@ -99,7 +99,6 @@ class UserController extends Controller
     //Rediģēt lietotāja profilu view
     public function edit($id)
     {
-        // Fetch the user details based on the $id parameter
         $user = auth()->user();
         return view('users.edit', compact('user'));
     }
@@ -120,12 +119,11 @@ class UserController extends Controller
            'password.min' => 'The password must be at least :min characters.',
        ]);
 
-       // Remove null or empty values from the formFields
+       // Filtrējam validētos datus, lai noņemtu null vērtības
        $formFields = array_filter($formFields, function ($value) {
            return $value !== null && $value !== '';
        });
-
-       // Hash the password if provided
+        //Hashojam paroli, ja tā tiek mainīta
        if (isset($formFields['password'])) {
            $formFields['password'] = bcrypt($formFields['password']);
        }
@@ -141,6 +139,7 @@ public function favoriteTeam()
     return $this->belongsTo(Team::class, 'favorite_team_id');
 }
 
+//Funkcija, kas ļauj lietotājam pievienot mīļako komandu
 public function addFavoriteTeam(\App\Models\Team $team)
 {
     $user = auth()->user();
@@ -148,11 +147,13 @@ public function addFavoriteTeam(\App\Models\Team $team)
     return redirect('/users/{id}/show')->with('message', 'Favorite team added successfully.');
 }
 
+
 public function favoritePlayer()
 {
     return $this->belongsTo(Player::class, 'favorite_player_id');
 }
 
+//Funkcija, kas ļauj lietotājam pievienot mīļako spēlētāju
 public function addFavoritePlayer(\App\Models\Player $player)
 {
     $user = auth()->user();
@@ -166,6 +167,5 @@ public function destroy(User $user)
 
     return redirect('/')->with('message', 'User deleted successfully!');
 }
-
 }
 
